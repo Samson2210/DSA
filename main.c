@@ -2,18 +2,20 @@
 #include<stdlib.h>
 #include <conio.h> 
 #include "./stack/stack.h"
+#include "./infix_to_postfix/infix_to_postfix.h"
+#include "./postfix_evaluation/postfix_evaluation.h"
 
 int main(){
     int option;
     int size;
-    while(1){
+   while(1){
         printf("Enter:\n1)Stack \n2)Infix to Postix Conversion \n3)Postfic evalution\n4)To exit\n");
         scanf("%d",&option);
         switch(option){
             case 1:
             {
                 stack* s = createStack();
-                char element; 
+                int element; 
                 do{
                     printf("1)Push \n2)Pop \n3)Peek \n4)Print stack \n5)Exit to exit\n");
                     scanf("%d",&option);
@@ -21,15 +23,18 @@ int main(){
                     {
                     case 1:
                     {
-                        printf("Enter the element to push:");
                         fflush(stdin);
-                        scanf("%c",&element);
+                        printf("Enter the element to push:");
+                        scanf("%d",&element);
                         push(s,element);
                         break;
                     }
                     case 2:
                     {
-                        printf("The poped element is:%c\n", pop(s));
+                        int data = pop(s);
+                        if(data){
+                        printf("The poped element is:%d\n", data);
+                        }
                         break;
                     }
                     case 3:
@@ -49,14 +54,20 @@ int main(){
                 while(option!=5);
                 break;
             }
-
+            case 2:{
+            char infixExpression[50];
+            printf("Enter the infix expression:");
+            scanf("%s",infixExpression);
+            char* postfixExpression = infixToPostfix(infixExpression);
+            printf("%s",postfixExpression);
             break;
-            case 2:
-            // TO DO : call to Infix to postfix 
-            break;
+            }
             case 3:
-            // TO DO: call to postfix evaluation 
-            break;
+            {char postfix[50];
+            printf("Enter the postfix expression:");
+            scanf("%s",postfix);
+            printf("Result:%d\n",evaluatePostfix(postfix));
+            break;}
             case 4:
             printf("Exiting the program");
             exit(0);
