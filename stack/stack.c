@@ -26,23 +26,21 @@ int isEmpty(stack *stack){
 }
 
 //push
-void push(stack *stack,char data){
+void push(stack *stack,int data){
     if(isFull(stack)){
         printf("STACK OVERFLOW\n");
     }
     else{
-        stack->top++;
-        stack->items[stack->top] = data;
+        stack->items[++stack->top] = data;
     }
 }
 
-char pop(stack* stack){
+int pop(stack* stack){
     if(isEmpty( stack)){
         printf("STACK UNDERFLOW");
     }
     else{
-    char data = stack->items[stack->top];
-    stack->top--;
+    int data = stack->items[stack->top--];
     return data;
     }   
 }
@@ -50,11 +48,11 @@ char pop(stack* stack){
 void printStack(stack* stack){
     int top = stack->top;
     for(int i=top;i>=0;i--){
-        printf("%c\n",stack->items[i]);
+        printf("%d\n",stack->items[i]);
     }
 }
 
 //TO DO
-char peek(stack* stack){
-
-}
+int peek(stack* stack){
+    return stack->items[stack->top];
+    }
