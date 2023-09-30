@@ -1,24 +1,28 @@
-#include<stdio.h>
-#include "./stack/stack.h"
+#include <stdio.h>
+#include <ctype.h>
+#include "../stack/stack.h"
 
-int evaluatePostfix(char* exp){
-    stack *s = creates();
+int evaluatePostfix(char *exp)
+{
+    stack *s = createStack();
+    // Scan all characters one by one
+    for (int i = 0; exp[i]; i++)
+    {
+        // If the scanned character is an operand
+        if (isdigit(exp[i]))
+            push(s, exp[i] - '0');// to covert char to int
 
-    for(int i=0;exp[i];i++){
-        if(isdigit(exp[i]))
-        push(s,exp[i]);
-
-        else{
-            int val1  = pop(s);
-            val1 -= '0';
-            int val2 = pop(s); 
-            val2 -= '0';   
+        // If the scanned character is an operator,
+        // pop two elements from stack apply the operator
+        else
+        {
+            int val1 = pop(s);
+            int val2 = pop(s);
             switch (exp[i])
             {
-            case'+':
-                push(s, val1+val2);
+            case '+':
+                push(s, val2 + val1);
                 break;
-
             case '-':
                 push(s, val2 - val1);
                 break;
@@ -28,11 +32,8 @@ int evaluatePostfix(char* exp){
             case '/':
                 push(s, val2 / val1);
                 break;
-            default:
-                break;
             }
-               
-            return pop(s)-'0';
         }
     }
+    return pop(s);
 }
