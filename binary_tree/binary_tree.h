@@ -1,16 +1,14 @@
 #ifndef BINARY_TREE
 #define BINARY_TREE
 
-struct node
-{
+struct TreeNode {
     int data;
-    struct node *left;
-    struct node *right;
+   struct TreeNode* left;
+   struct TreeNode* right;
 };
-typedef struct node node;
+typedef struct TreeNode TreeNode;
 
-node* create(int data);
-node* insertLeft(node* root, int data); // TO DO
-node* insertRight(node* root, int data); // TO DO
+TreeNode* createNode(int data) ;
+TreeNode* insert( TreeNode* root, int data);
 
 #endif

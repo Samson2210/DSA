@@ -5,6 +5,8 @@
 #include "./infix_to_postfix/infix_to_postfix.h"
 #include "./postfix_evaluation/postfix_evaluation.h"
 #include "./bracket_matching/bracket_matching.h"
+#include "./binary_tree/binary_tree.h"
+#include "./tree_traversal/tree_traversal.h"
 
 int main()
 {
@@ -12,7 +14,7 @@ int main()
     int size;
     while (1)
     {
-        printf("Enter:\n1)Stack \n2)Infix to Postix Conversion \n3)Postfic evalution\n4)Bracket Matching\n");
+        printf("Enter:\n1)Stack \n2)Infix to Postix Conversion \n3)Postfic evalution\n4)Bracket Matching \n5)Binary Tree\n");
         scanf("%d", &option);
         switch (option)
         {
@@ -78,18 +80,78 @@ int main()
         }
         case 4:
         {
-           char exp[50];
+            char exp[50];
             printf("Enter the expression:");
             scanf("%s", exp);
-            if(areBracketsBalanced(exp))
-            printf("Balanced \n");
+            if (areBracketsBalanced(exp))
+                printf("Balanced \n");
             else
                 printf("Not Balanced \n");
+            break;
+        }
+        case 5:
+        {
+            int treeCreated = 0;
+            TreeNode* root = NULL;
+            int data;
+
+            do
+            {
+                printf("Enter \n1)insert data in binary tree \n2)To delete \n3)Inorder Traversal \n4)Preorder Tracersal \n5)Postorder Traversal:");
+
+                scanf("%d", &option);
+                switch (option)
+                {
+                case 1:
+                {
+                    printf("\nEnter the data to be inserted:");
+                    fflush(stdin);
+                    scanf("%d", &data);
+                    if (treeCreated)
+                    {
+                        insert(root, data);
+                    }
+                    else
+                    {
+                        root = insert(root, data);
+                        treeCreated = 1;
+                    }
+                    break;
+                }
+
+                case 2:
+                {
+                    // TO DO
+                    break;
+                }
+                case 3:
+                {
+                    inorderTraversal(root);
+                    break;
+                }
+                case 4:
+                {
+                    preorderTraversal(root);
+                    break;
+                }
+                case 5:
+                {
+                    postorderTraversal(root);
+                    break;
+                }
+
+                default:
+                    break;
+                }
+
+            }while(option!=6);
             break;
         }
         default:
             printf("Exiting the program");
             exit(0);
         }
+
+        // }
     }
 }

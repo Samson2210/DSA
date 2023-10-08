@@ -1,9 +1,9 @@
-#include<stdio.h>;
+#include<stdio.h>
 #include "tree_traversal.h"
 
 
 //INORDER TRAVERSAL
-void inorderTraversal(node* root){
+void inorderTraversal(TreeNode* root){
     if(root == NULL)
     return;
     inorderTraversal(root->left);
@@ -12,7 +12,7 @@ void inorderTraversal(node* root){
 }
 
 //  PREORDER TRAVERSAL
-void preorderTraversal(node* root){
+void preorderTraversal(TreeNode* root){
     if(root == NULL)
     return;
     printf("%d->", root->data);
@@ -20,4 +20,12 @@ void preorderTraversal(node* root){
     preorderTraversal(root->right);
 }
 
+//POSTORDER TRAVERSAL
+void postorderTraversal(TreeNode* root){
+    if(root==NULL)
+    return;
+    postorderTraversal(root->left);
+    postorderTraversal(root->right);
+    printf("%d ->", root->data);
+}
 
