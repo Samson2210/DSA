@@ -10,5 +10,5 @@ typedef struct TreeNode TreeNode;
 
 TreeNode* createNode(int data) ;
 TreeNode* insert( TreeNode* root, int data);
-
+TreeNode* delete(TreeNode* root, int data);
 #endif
