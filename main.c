@@ -1,12 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <stdbool.h>
 #include "./stack/stack.h"
 #include "./infix_to_postfix/infix_to_postfix.h"
 #include "./postfix_evaluation/postfix_evaluation.h"
 #include "./bracket_matching/bracket_matching.h"
 #include "./binary_tree/binary_tree.h"
 #include "./tree_traversal/tree_traversal.h"
+#include "./shortest_path/dijkstra.h"
+#include "./QuickSort/quickSort.h"
 
 int main()
 {
@@ -14,7 +17,7 @@ int main()
     int size;
     while (1)
     {
-        printf("Enter:\n1)Stack \n2)Infix to Postix Conversion \n3)Postfic evalution\n4)Bracket Matching \n5)Binary Tree\n");
+        printf("Enter:\n1)Stack \n2)Infix to Postix Conversion \n3)Postfic evalution\n4)Bracket Matching \n5)Binary Tree \n6)Shortest distance \n7)Qiuck Sort \n8) Merge Sort");
         scanf("%d", &option);
         switch (option)
         {
@@ -92,12 +95,12 @@ int main()
         case 5:
         {
             int treeCreated = 0;
-            TreeNode* root = NULL;
+            TreeNode *root = NULL;
             int data;
 
             do
             {
-                printf("Enter \n1)insert data in binary tree \n2)To delete \n3)Inorder Traversal \n4)Preorder Tracersal \n5)Postorder Traversal:");
+                printf("Enter \n1)insert data in binary tree \n2)To delete \n3)Inorder Traversal \n4)Preorder Tracersal \n5)Postorder Traversal");
 
                 scanf("%d", &option);
                 switch (option)
@@ -121,7 +124,9 @@ int main()
 
                 case 2:
                 {
-                    // TO DO
+                    printf("\nEnter the data to be deleted:");
+                    scanf("%d", &data);
+                    delete (root, data);
                     break;
                 }
                 case 3:
@@ -144,14 +149,73 @@ int main()
                     break;
                 }
 
-            }while(option!=6);
+            } while (option != 9);
             break;
         }
+
+        case 6:
+        {
+            int src;
+            int graph[V][V];
+            printf("Enter the adjacency matrix of the graph (%d x %d):\n", V, V);
+            for (int i = 0; i < V; i++)
+            {
+                for (int j = 0; j < V; j++)
+                {
+                    scanf("%d", &graph[i][j]);
+                }
+            }
+
+            printf("Enter the source vertex: ");
+            scanf("%d", &src);
+
+            dijkstra(graph, src);
+        }
+
+        case 7:
+        {
+            int numberOfElements;
+            printf("Enter the number of elemets you want to sort:\n");
+            scanf("%d", &numberOfElements);
+
+            int arr[numberOfElements];
+            printf("Enter the elements:\n");
+            for (int i = 0; i < numberOfElements; i++)
+            {
+                scanf("%d", &arr[i]);
+            }
+
+            quickSort(arr, 0, numberOfElements - 1);
+            printf("Sorted array: \n");
+            for (int i = 0; i < numberOfElements; i++)
+             printf("%d ", arr[i]);
+            break;
+        }
+
+        case 8:
+        {
+            int numberOfElements;
+            printf("Enter the number of elemets you want to sort:\n");
+            scanf("%d", &numberOfElements);
+
+            int arr[numberOfElements];
+            printf("Enter the elements:\n");
+            for (int i = 0; i < numberOfElements; i++)
+            {
+                scanf("%d", &arr[i]);
+            }
+
+            quickSort(arr, 0, numberOfElements - 1);
+            printf("Sorted array: \n");
+            for (int i = 0; i < numberOfElements; i++)
+            printf("%d ", arr[i]);
+
+            break
+        }
+
         default:
             printf("Exiting the program");
             exit(0);
         }
-
-        // }
     }
 }
