@@ -1,17 +1,16 @@
 #include "quickSort.h"
 
-
-void swap(WordFrequency* a, WordFrequency* b)
+void swap(int* a, int* b)
 {
-    WordFrequency t = *a;
+    int t = *a;
     *a = *b;
     *b = t;
 }
 
-int partition(WordFrequency arr[], int low, int high)
+int partition(int arr[], int low, int high)
 {
     // Choosing the pivot
-    WordFrequency pivot = arr[high];
+    int pivot = arr[high];
  
     // Index of smaller element and indicates
     // the right position of pivot found so far
@@ -20,7 +19,7 @@ int partition(WordFrequency arr[], int low, int high)
     for (int j = low; j <= high - 1; j++) {
  
         // If current element is smaller than the pivot
-        if (arr[j].frequency < pivot.frequency) {
+        if (arr[j] < pivot) {
  
             // Increment index of smaller element
             i++;
@@ -31,7 +30,7 @@ int partition(WordFrequency arr[], int low, int high)
     return (i + 1);
 }
 
-void quickSort(WordFrequency arr[], int low, int high)
+void quickSort(int arr[], int low, int high)
 {
     if (low < high) {
  
@@ -45,5 +44,3 @@ void quickSort(WordFrequency arr[], int low, int high)
         quickSort(arr, pi + 1, high);
     }
 }
-
-
