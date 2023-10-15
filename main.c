@@ -210,7 +210,7 @@ int main()
             for (int i = 0; i < numberOfElements; i++)
             printf("%d ", arr[i]);
 
-            break
+            break;
         }
 
         default:
