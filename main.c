@@ -50,7 +50,7 @@ int main()
                 }
                 case 3:
                 {
-                    printf("The element at stack top:%c\n", peek(s));
+                    printf("The element at stack top:%d\n", peek(s));
                     break;
                 }
                 case 4:
